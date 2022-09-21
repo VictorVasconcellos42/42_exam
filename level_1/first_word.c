@@ -1,49 +1,37 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vde-vasc <vde-vasc@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/19 01:42:04 by vde-vasc          #+#    #+#             */
-/*   Updated: 2022/08/19 01:56:01 by vde-vasc         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <unistd.h>
 
-int	is_space(char *str)
+int	is_space(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (0);
+	return (1);
+}
+
+void	ft_putchar(char c)
 
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ' || str[i] == '\t')
-			i++;
-		else
-			break;
-	}
-	return (i);
+	write(1, &c, 1);
 }
+
 
 int	main(int argc, char *argv[])
 
 {
-	int	i;
 
 	if (argc == 2)
-	{
-		i = is_space(argv[1]);
-		while (argv[1][i])
-		{
-			write(1, &argv[1][i], 1);
-			if (argv[1][i + 1] == ' ' ||  argv[1][i + 1] == '\0')
-				break ;
-			i++; 
-		}
+	{	
+		char	*string;
+		int		i;
+
+		i = 0;
+		string = argv[1];
+		while (is_space(string[i]) == 0)
+			i++;
+		while (string[i] && is_space(string[i]) == 1)
+			ft_putchar(string[i++]);
 	}
-	write(1, "\n", 1);
+	ft_putchar('\n');
 	return (0);
 }
+
