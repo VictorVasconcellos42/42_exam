@@ -51,10 +51,7 @@ int	main(int argc, char *argv[])
 		i = 0;
 		number = 0;
 		while (str[i] >= '0' && str[i] <= '9')
-		{
-			number = number * 10 + (str[i] - '0');
-			i++;
-		}	
+			number = number * 10 + (str[i++] - '0');
 		i = 1;
 		while (tab <= 57)
 		{

@@ -1,6 +1,15 @@
 
 #include <unistd.h>
 
+int	ft_strlen(char *str)
+
+{
+	int i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 int	is_space(char c)
 {
 	if (c == ' ' || c == '\t')
@@ -24,12 +33,16 @@ int	main(int argc, char *argv[])
 		char	*string;
 		int		i;
 
-		i = 0;
 		string = argv[1];
+		i = ft_strlen(argv[1]) - 1;
 		while (is_space(string[i]) == 0)
-			i++;
+			i--;
+		while (is_space(string[i]) == 1)
+			i--;
+		i++;
 		while (is_space(string[i]) == 1 && string[i])
 			ft_putchar(string[i++]);
+
 	}
 	ft_putchar('\n');
 	return (0);
